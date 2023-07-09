@@ -16,7 +16,7 @@ export default function DocenteQualis () {
             <td>{i.B2}</td>
             <td>{i.B3}</td>
             <td>{i.B4}</td>
-            <td> <a href="docente.html">Mais</a> </td>
+            <td> <a href="Docente">Mais</a> </td>
         </tr>
     ));  
 

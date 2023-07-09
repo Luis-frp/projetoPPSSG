@@ -6,7 +6,7 @@ import Header from './componentes/Header'
 import Filtros from './componentes/Filtros'
 import Indicadores from './componentes/Indicadores'
 import DocenteQualis from'./componentes/DocenteQualis' 
-import GraficoProducao from './componentes/Graficos'
+import Graficos from './componentes/Graficos'
 
 
 const programas = [
@@ -65,7 +65,7 @@ export default function Home() {
                                     />
                             <Indicadores dados={indicadores}/>
 
-                            <GraficoProducao />
+                            <Graficos titulo={"Produção vs Qualis"}/>
                             <DocenteQualis />
                         </div>
                     </div>

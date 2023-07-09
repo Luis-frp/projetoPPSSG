@@ -54,26 +54,34 @@ const config = {
     }
   }
 
-export default function GraficoProducao() {
+export default function Graficos({titulo}) {
     return (
-        <div class="card card-gray">
-          <div class="card-header">
-            <h3 class="card-title">Produção vs Qualis</h3>
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="chart">
-              <Bar options={config} data = {dados} />
-            </div>
-          </div>        
-        </div>
+            <GraficoProducao titulo={titulo}/>
     );
-  }
+}
+
+function GraficoProducao({titulo}){
+  return(
+      <div class="card card-gray">
+      <div class="card-header">
+        <h3 class="card-title">{titulo}</h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart">
+          <Bar options={config} data = {dados} />
+        </div>
+      </div>        
+    </div>
+  );
+
+}
+
 

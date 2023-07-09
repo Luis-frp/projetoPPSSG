@@ -6,7 +6,7 @@ import Header from './componentes/Header'
 import Filtros from './componentes/Filtros'
 import Indicadores from './componentes/Indicadores'
 import DocenteQualis from'./componentes/DocenteQualis' 
-import GraficoProducao from './componentes/Graficos'
+import Graficos from './componentes/Graficos'
 
 export default function Docente(){
  
@@ -15,7 +15,16 @@ export default function Docente(){
         const [anoFim, setAnoFim] = useState(2023);
         
         const [indicadores, setIndicadores] = useState({});
-    
+
+        
+        const programas = [
+            {id:1, nome:"PPGCC"},
+            {id:2, nome:"DCCMAPI"},
+        ]
+
+        const client = axios.create({
+            baseURL: "http://localhost:8080/api/home/" 
+        });
     
         useEffect( () => {
             document.body.classList.add('hold-transition', 'layout-top-nav');
@@ -25,7 +34,6 @@ export default function Docente(){
     
         
         function onSearch() {
-            console.log('as')
             client.get(`indicadores?programa=${progSel}&anoIni=${anoIni}&anoFim=${anoFim}`)
                 .then(                
                     (response) => {
@@ -42,7 +50,7 @@ export default function Docente(){
             <div className="wrapper">
                 <Navbar titulo="SPPG"/>
                 <div class="content-wrapper">
-                    <Header titulo="Programa"/>
+                    <Header titulo="Docente"/>
     
                     <div class="content">      
                         <div class="container">
@@ -55,7 +63,8 @@ export default function Docente(){
                                         />
                                 <Indicadores dados={indicadores}/>
     
-                                <GraficoProducao />
+                                <Graficos titulo={"Produção em Periódicos vs Qualis"}/>
+                                <Graficos titulo={"Produção em Congressos vs Qualis"}/>
                                 <DocenteQualis />
                             </div>
                         </div>

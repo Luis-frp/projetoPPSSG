@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Home from './views/Home'
-import Docente from './views/Docente'
+import Home from './views/Home';
+import Docente from './views/Docente';
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import 'admin-lte/dist/css/adminlte.min.css'
 import 'admin-lte/plugins/fontawesome-free/css/all.min.css'
