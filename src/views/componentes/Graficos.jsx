@@ -16,6 +16,8 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
+
 const dados = {
     labels  : ['2023', '2022', '2021', '2020', '2019'],
     datasets: [
@@ -62,20 +64,20 @@ export default function Graficos({titulo}) {
 
 function GraficoProducao({titulo}){
   return(
-      <div class="card card-gray">
-      <div class="card-header">
-        <h3 class="card-title">{titulo}</h3>
-        <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-card-widget="collapse">
-            <i class="fas fa-minus"></i>
+      <div className="card card-gray">
+      <div className="card-header">
+        <h3 className="card-title">{titulo}</h3>
+        <div className="card-tools">
+          <button type="button" className="btn btn-tool" data-card-widget="collapse">
+            <i className="fas fa-minus"></i>
           </button>
-          <button type="button" class="btn btn-tool" data-card-widget="remove">
-            <i class="fas fa-times"></i>
+          <button type="button" className="btn btn-tool" data-card-widget="remove">
+            <i className="fas fa-times"></i>
           </button>
         </div>
       </div>
-      <div class="card-body">
-        <div class="chart">
+      <div className="card-body">
+        <div className="chart">
           <Bar options={config} data = {dados} />
         </div>
       </div>        

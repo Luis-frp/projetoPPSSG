@@ -1,13 +1,14 @@
-import {useEffect} from 'react'
-import {useState} from 'react'
-import axios from 'axios'
-import Navbar from './componentes/Navbar'  
-import Header from './componentes/Header'
-import Filtros from './componentes/Filtros'
-import Indicadores from './componentes/Indicadores'
-import DocenteQualis from'./componentes/DocenteQualis' 
-import Graficos from './componentes/Graficos'
 
+import Navbar from "../componentes/Navbar";
+import Header from "../componentes/Header";
+import Filtros from "../componentes/Filtros";
+import Indicadores from "../componentes/Indicadores";
+import Graficos from "../componentes/Graficos";
+
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from 'axios'
+import Tabela from "../componentes/Tabela";
 
 const programas = [
     {id:1, nome:"PPGCC"},
@@ -30,12 +31,10 @@ export default function Home() {
     useEffect( () => {
         document.body.classList.add('hold-transition', 'layout-top-nav');
         onSearch();
-        },[] 
+        },[]
     )
-
     
     function onSearch() {
-        console.log('as')
         client.get(`indicadores?programa=${progSel}&anoIni=${anoIni}&anoFim=${anoFim}`)
             .then(                
                 (response) => {
@@ -46,17 +45,17 @@ export default function Home() {
                 console.log(error.response);
             });
     }
-    
+
     return (
         
         <div className="wrapper">
             <Navbar titulo="SPPG"/>
-            <div class="content-wrapper">
+            <div className="content-wrapper">
                 <Header titulo="Programa"/>
 
-                <div class="content">      
-                    <div class="container">
-                        <div class="container-fluid">
+                <div className="content">      
+                    <div className="container">
+                        <div className="container-fluid">
                             <Filtros programas={programas}
                                     filtroProg={progSel} onProgChange={setProgSel} 
                                     filtroAnoIni={anoIni} onAnoIniChange={setAnoIni}
@@ -66,7 +65,7 @@ export default function Home() {
                             <Indicadores dados={indicadores}/>
 
                             <Graficos titulo={"Produção vs Qualis"}/>
-                            <DocenteQualis />
+                            <Tabela />
                         </div>
                     </div>
                 </div>

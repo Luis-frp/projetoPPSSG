@@ -3,7 +3,8 @@ const dados = [
     {id:1, nome:"Geraldo Braz Junior", A1:1, A2:0, A3:1, A4:0, B1:1, B2:0, B3:1, B4:0},
 ]
 
-export default function DocenteQualis () {
+export default function Tabela () {
+    
     const linhas = dados.map( (i, key) =>
     (
         <tr key={key}>
@@ -18,16 +19,16 @@ export default function DocenteQualis () {
             <td>{i.B4}</td>
             <td> <a href="Docente">Mais</a> </td>
         </tr>
-    ));  
+    ));
 
     return (
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Docentes</h3>
+        <div className="card">
+            <div className="card-header">
+                <h3 className="card-title">Docentes</h3>
             </div>
             
-            <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped">
+            <div className="card-body">
+            <table id="example1" className="table table-bordered table-striped">
                 <thead>
                 <tr>
                 <th>Docente</th>
@@ -63,7 +64,5 @@ export default function DocenteQualis () {
             </div>
         </div>
     )
-
-
 
 }

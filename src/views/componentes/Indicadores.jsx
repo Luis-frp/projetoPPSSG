@@ -17,8 +17,8 @@ function Infobox({nome, valor, bg, icon}){
     return (
         <div className="col-md-3 col-sm-6 col-12">
             <div className="info-box">
-                <span className={"info-box-icon "+ bg}>
-                  <i className={"far " + icon}></i>
+                <span className={`info-box-icon ${bg}`}>
+                    <i className={"far " + icon}></i>
                 </span>
                 <div className="info-box-content">
                     <span className="info-box-text">{nome}</span>
