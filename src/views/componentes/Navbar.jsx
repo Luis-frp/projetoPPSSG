@@ -16,6 +16,9 @@ export default function Navbar({titulo}) {
                 <li className="nav-item">
                   <a href="Docente" className="nav-link">Docentes</a>
                 </li>
+                <li className="nav-item">
+                  <a href="Producao" className="nav-link">Producao</a>
+                </li>
               </ul>
             </div>
           </div>

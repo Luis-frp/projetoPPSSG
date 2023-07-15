@@ -1,68 +1,77 @@
-const dados = [
-    {id:1, nome:"Alexandre César Muniz de Oliveira", A1:1, A2:0, A3:1, A4:0, B1:1, B2:0, B3:1, B4:0},
-    {id:1, nome:"Geraldo Braz Junior", A1:1, A2:0, A3:1, A4:0, B1:1, B2:0, B3:1, B4:0},
-]
+import React, { useEffect } from 'react';
+import $ from 'jquery';
 
-export default function Tabela () {
-    
-    const linhas = dados.map( (i, key) =>
-    (
-        <tr key={key}>
-            <td>{i.nome}</td>
-            <td>{i.A1}</td>
-            <td>{i.A2}</td>
-            <td>{i.A3}</td>
-            <td>{i.A4}</td>
-            <td>{i.B1}</td>
-            <td>{i.B2}</td>
-            <td>{i.B3}</td>
-            <td>{i.B4}</td>
-            <td> <a href="Docente">Mais</a> </td>
-        </tr>
-    ));
+function CabecalhoTabela({ header }) {
+  return (
+    <thead>
+      <tr>
+        <th>{header}</th>
+        <th>A1</th>
+        <th>A2</th>
+        <th>A3</th>
+        <th>A4</th>
+        <th>B1</th>
+        <th>B2</th>
+        <th>B3</th>
+        <th>B4</th>
+        <th>Detalhar</th>
+      </tr>
+    </thead>
+  );
+}
 
-    return (
-        <div className="card">
-            <div className="card-header">
-                <h3 className="card-title">Docentes</h3>
-            </div>
-            
-            <div className="card-body">
-            <table id="example1" className="table table-bordered table-striped">
-                <thead>
-                <tr>
-                <th>Docente</th>
-                <th>A1</th>
-                <th>A2</th>
-                <th>A3</th>
-                <th>A4</th>
-                <th>B1</th>
-                <th>B2</th>
-                <th>B3</th>
-                <th>B4</th>
-                <th>Detalhar</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {linhas}
-                </tbody>
-                <tfoot>
-                <tr>
-                <th>Docente</th>
-                <th>A1</th>
-                <th>A2</th>
-                <th>A3</th>
-                <th>A4</th>
-                <th>B1</th>
-                <th>B2</th>
-                <th>B3</th>
-                <th>B4</th>
-                <th>Detalhar</th>
-                </tr>
-                </tfoot>
-            </table>
-            </div>
-        </div>
-    )
+function CorpoTabela({ dados }) {
+  const linhas = dados.map((item, index) => (
+    <tr key={index}>
+      <td>{item.nome}</td>
+      <td>{item.A1}</td>
+      <td>{item.A2}</td>
+      <td>{item.A3}</td>
+      <td>{item.A4}</td>
+      <td>{item.B1}</td>
+      <td>{item.B2}</td>
+      <td>{item.B3}</td>
+      <td>{item.B4}</td>
+      <td> <a href="Docente">Mais</a> </td>
+    </tr>
+  ));
+  return <tbody>{linhas}</tbody>;
+}
 
+export default function Tabela({ dados, header, titulo }) {
+  useEffect(() => {
+    $(function() {
+      $('#example1').DataTable({
+        responsive: true,
+        lengthChange: false,
+        autoWidth: false,
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis'],
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+      $('#example2').DataTable({
+        paging: true,
+        lengthChange: false,
+        searching: false,
+        ordering: true,
+        info: true,
+        autoWidth: false,
+        responsive: true,
+      });
+    });
+  }, []);
+
+  return (
+    <div className="card">
+      <div className="card-header">
+        <h3 className="card-title">{titulo}</h3>
+      </div>
+
+      <div className="card-body">
+        <table id="example1" className="table table-bordered table-striped">
+          <CabecalhoTabela header={header} />
+          <CorpoTabela dados={dados} />
+        </table>
+      </div>
+    </div>
+  );
 }

@@ -2,7 +2,8 @@
 import Navbar from "../componentes/Navbar";
 import Header from "../componentes/Header";
 import Filtros from "../componentes/Filtros";
-import indicadores from "../componentes/Indicadores";
+import Indicadores from "../componentes/Indicadores";
+import Graficos from "../componentes/Graficos";
 import Tabela from "../componentes/Tabela";
 
 import { useState } from "react";
@@ -17,6 +18,10 @@ export default function Docente(){
     
     const [indicadores, setIndicadores] = useState({});
 
+    const dados = [
+        {id:1, nome:"Alexandre César Muniz de Oliveira", A1:1, A2:0, A3:1, A4:0, B1:1, B2:0, B3:1, B4:0},
+        {id:1, nome:"Geraldo Braz Junior", A1:1, A2:0, A3:1, A4:0, B1:1, B2:0, B3:1, B4:0},
+    ]
     
     const programas = [
         {id:1, nome:"PPGCC"},
@@ -62,9 +67,9 @@ export default function Docente(){
                                     filtroAnoFim={anoFim} onAnoFimChange={setAnoFim}
                                     onSearch={onSearch}
                                     />
-                                    <Tabela/>
-                                    
-                            
+                            <Indicadores dados={indicadores}/>
+                            <Graficos titulo={"Produção vs Qualis"}/>
+                            <Tabela dados={dados} header = {'Docentes'} titulo ={'Docente'}/>
                         </div>
                     </div>
                 </div>

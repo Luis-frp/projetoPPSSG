@@ -10,34 +10,34 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from 'axios'
 
-
-const programas = [
-    {id:1, nome:"PPGCC"},
-    {id:2, nome:"DCCMAPI"},
-]
-
-const client = axios.create({
-    baseURL: "http://localhost:8080/api/home/" 
-});
-const dados = [
-    {id:1, nome:"Alexandre César Muniz de Oliveira", A1:1, A2:0, A3:1, A4:0, B1:1, B2:0, B3:1, B4:0},
-    {id:1, nome:"Geraldo Braz Junior", A1:1, A2:0, A3:1, A4:0, B1:1, B2:0, B3:1, B4:0},
-]
-
-export default function Home() {    
-
+export default function Programa(){
+ 
     const [progSel, setProgSel] = useState(1);
     const [anoIni, setAnoIni] = useState(2019);
     const [anoFim, setAnoFim] = useState(2023);
     
     const [indicadores, setIndicadores] = useState({});
+    
+    const dados = [
+        {id:1, nome:"Alexandre César Muniz de Oliveira", A1:1, A2:0, A3:1, A4:0, B1:1, B2:0, B3:1, B4:0},
+        {id:1, nome:"Geraldo Braz Junior", A1:1, A2:0, A3:1, A4:0, B1:1, B2:0, B3:1, B4:0},
+    ]
+    
+    const programas = [
+        {id:1, nome:"PPGCC"},
+        {id:2, nome:"DCCMAPI"},
+    ]
 
+    const client = axios.create({
+        baseURL: "http://localhost:8080/api/home/" 
+    });
 
     useEffect( () => {
         document.body.classList.add('hold-transition', 'layout-top-nav');
         onSearch();
-        },[]
+        },[] 
     )
+
     
     function onSearch() {
         client.get(`indicadores?programa=${progSel}&anoIni=${anoIni}&anoFim=${anoFim}`)
@@ -50,13 +50,13 @@ export default function Home() {
                 console.log(error.response);
             });
     }
-
+    
     return (
         
         <div className="wrapper">
             <Navbar titulo="SPPG"/>
             <div className="content-wrapper">
-                <Header titulo="Programa"/>
+                <Header titulo="Programas"/>
 
                 <div className="content">      
                     <div className="container">
@@ -68,9 +68,13 @@ export default function Home() {
                                     onSearch={onSearch}
                                     />
                             <Indicadores dados={indicadores}/>
-
                             <Graficos titulo={"Produção vs Qualis"}/>
-                            <Tabela dados={dados} header = {'Docentes'} titulo ={'Docente'}/>
+                            <Graficos titulo={"Tecnica vs Qualis"}/>
+                            <Graficos titulo={"Qualis"}/>
+                            
+                            <Tabela dados={dados} header = {'Docentes'} titulo ={'Programas'}/>
+                            <Tabela dados={dados} header = {'Docentes'} titulo ={'Tecnicas'}/>
+                            <Tabela dados={dados} header = {'Docentes'} titulo ={'Produções'}/>
                         </div>
                     </div>
                 </div>
@@ -79,5 +83,4 @@ export default function Home() {
         </div>
 
     );
-
 }
